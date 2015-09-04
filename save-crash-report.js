@@ -4,6 +4,7 @@ const _ = require('lodash')
 const db = require('./db')
 const fs = require('fs')
 const multiparty = require('multiparty')
+const uuid = require('node-uuid')
 
 module.exports = function saveCrashReport (req, res) {
   const form = new multiparty.Form()
@@ -36,7 +37,7 @@ module.exports = function saveCrashReport (req, res) {
       }
     }
 
-    doc._id = new Date().toISOString()
+    doc._id = `${new Date().toISOString()}-${uuid.v4()}`
     doc._attachments = {}
     doc._attachments[file.originalFilename] = {
       content_type: 'application/x-dmp',
