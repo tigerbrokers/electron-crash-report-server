@@ -1,9 +1,13 @@
 'use strict'
 
+const authorize = require('./authorize')
 const config = require('./config')
+const downloadDumpFile = require('./download-dump-file')
 const express = require('express')
 const fs = require('fs')
+const listCrashReports = require('./list-crash-reports')
 const saveCrashReport = require('./save-crash-report')
+const viewCrashReport = require('./view-crash-report')
 
 fs.accessSync('.', fs.W_OK)
 fs.accessSync('config.ini', fs.R_OK)
@@ -17,4 +21,12 @@ const server = app.listen(config.port, function () {
 
 app.set('trust proxy', true)
 
+app.use(express.static('public'))
+
 app.post('/', saveCrashReport)
+
+if (config.http.enabled) {
+  app.get('/', authorize, listCrashReports)
+  app.get('/:id', authorize, viewCrashReport)
+  app.get('/:id/:att', authorize, downloadDumpFile)
+}

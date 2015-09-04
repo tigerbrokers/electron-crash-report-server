@@ -26,5 +26,6 @@
     "lodash": "^3.10.1",
     "multiparty": "^4.1.2",
     "pouchdb": "^4.0.1"
+    "virtual-dom": "^2.1.1"
   }
 }

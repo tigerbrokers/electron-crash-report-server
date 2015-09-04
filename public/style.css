@@ -1,0 +1,42 @@
+body {
+  font-family: sans-serif;
+  font-size: 87.5%;
+}
+
+dd,
+dt {
+  display: inline-block;
+}
+
+dd {
+  width: 89%;
+  margin-left: 1%;
+}
+
+dt {
+  width: 10%;
+  text-align: right;
+}
+
+table {
+  width: 100%;
+}
+
+
+td,
+th {
+  padding: 8px;
+}
+
+td {
+  border-top: 1px solid #ccc;
+}
+
+td img {
+  width: auto;
+  height: 12px;
+}
+
+th {
+  text-align: left;
+}
