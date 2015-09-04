@@ -16,6 +16,9 @@
     "url": "https://github.com/johnmuhl/electron-crash-report-server/issues"
   },
   "homepage": "https://github.com/johnmuhl/electron-crash-report-server#readme",
+  "engines": {
+    "node": "^2.0.0"
+  },
   "dependencies": {
     "basic-auth": "^1.0.3",
     "express": "^4.13.3",
