@@ -22,4 +22,8 @@ Reports are available at `submitUrl` (or your inbox by
 enabling email). Disabling `http` will remove the ability
 to view reports online.
 
+**Note** that you need to start the `crashReporter` in both
+the main and renderer processes if you wish to generate
+reports from both.
+
 [sample-config]: http://git.io/vGbHg
