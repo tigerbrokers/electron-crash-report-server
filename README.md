@@ -11,8 +11,6 @@ based application.
    ``` javascript
    const crashReporter = require('crash-reporter')
    crashReporter.start({
-     productName: 'My App',
-     companyName: 'My Company',
      submitUrl: 'http://domain.tld:1127/'
    })
    ```
