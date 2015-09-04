@@ -1,7 +1,9 @@
 'use strict'
 
 const _ = require('lodash')
+const config = require('./config')
 const db = require('./db')
+const emailCrashReport = require('./email-crash-report')
 const fs = require('fs')
 const multiparty = require('multiparty')
 const uuid = require('node-uuid')
@@ -44,7 +46,8 @@ module.exports = function saveCrashReport (req, res) {
       data: fs.readFileSync(file.path)
     }
 
-    db.put(doc).then(function () {
+    db.put(doc).then(function (response) {
+      if (config.email.enabled) emailCrashReport(response.id)
       res.send('thanks!')
     }).catch(function (err) {
       console.error(err)
