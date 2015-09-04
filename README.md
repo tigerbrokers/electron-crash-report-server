@@ -34,6 +34,15 @@ to view reports online.
 the main and renderer processes if you wish to generate
 reports from both.
 
+## bugs & features
+Please [create an issue][issues] if you encounter bugs or
+missing features.
+
+## license
+[MIT license][license]
+
 [git-repo]: http://git.io/vGxTg
+[issues]: http://git.io/vGxt1
 [latest]: http://git.io/vGxTY
+[license]: http://git.io/vGxmf
 [sample-config]: http://git.io/vGbHg
