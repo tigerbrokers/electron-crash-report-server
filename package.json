@@ -1,6 +1,6 @@
 {
   "name": "electron-crash-report-server",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A server for collecting crash reports from your Electron based application",
   "main": "index.js",
   "scripts": {
