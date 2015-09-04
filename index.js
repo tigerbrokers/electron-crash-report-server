@@ -28,5 +28,5 @@ app.post('/', saveCrashReport)
 if (config.http.enabled) {
   app.get('/', authorize, listCrashReports)
   app.get('/:id', authorize, viewCrashReport)
-  app.get('/:id/:att', authorize, downloadDumpFile)
+  app.get('/:id/:attachment', authorize, downloadDumpFile)
 }
