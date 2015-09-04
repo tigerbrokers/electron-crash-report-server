@@ -25,7 +25,7 @@ app.use(express.static('public'))
 
 app.post('/', saveCrashReport)
 
-if (config.http.enabled) {
+if (config.web.enabled) {
   app.get('/', authorize, listCrashReports)
   app.get('/:id', authorize, viewCrashReport)
   app.get('/:id/:attachment', authorize, downloadDumpFile)

@@ -4,7 +4,6 @@ const basicAuth = require('basic-auth')
 const config = require('./config')
 
 module.exports = function authorize (req, res, next) {
-  const auth = config.http_auth
   const user = basicAuth(req)
 
   if (!user || !user.name || !user.pass) return unauthorized(res)
@@ -12,7 +11,7 @@ module.exports = function authorize (req, res, next) {
   else return unauthorized(res)
 
   function authorized (user) {
-    return user.name === auth.username && user.pass === auth.password
+    return user.name === config.web.user && user.pass === config.web.pass
   }
 
   function unauthorized (res) {
