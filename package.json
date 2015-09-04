@@ -1,0 +1,19 @@
+{
+  "name": "electron-crash-report-server",
+  "version": "0.0.0",
+  "description": "A server for collecting crash reports from your Electron based application",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnmuhl/electron-crash-report-server.git"
+  },
+  "author": "John Muhl <johnmuhl@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johnmuhl/electron-crash-report-server/issues"
+  },
+  "homepage": "https://github.com/johnmuhl/electron-crash-report-server#readme"
+}
