@@ -51,8 +51,7 @@ function render (response) {
 module.exports = function listCrashReports (req, res) {
   db.allDocs({
     descending: true,
-    include_docs: true,
-    limit: 100
+    include_docs: true
   }).then(function (response) {
     const tree = render(response)
     const vdom = createElement(tree)
