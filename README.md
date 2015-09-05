@@ -10,7 +10,7 @@ application.
 2. Create a `config.ini` file with your settings; use
    [`config-sample.ini`][sample-config] to get started
 
-3. Run `npm start`
+3. Run `npm install` and `npm start`
 
 4. Enable crash reports from your application
 
