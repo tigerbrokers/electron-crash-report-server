@@ -18,7 +18,7 @@ function render (doc) {
       doc._id,
       h('form', { action: `/${doc._id}?_method=DELETE`, method: 'post' }, [
         h('button.destroy', { type: 'submit' }, [
-          h('img', { alt: 'delete', src: 'x.svg' }),
+          h('img', { src: 'x.svg' }),
           'delete'
         ])
       ])
