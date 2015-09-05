@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "basic-auth": "^1.0.3",
+    "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "ini": "^1.3.4",
     "lodash": "^3.10.1",
