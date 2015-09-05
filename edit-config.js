@@ -29,6 +29,7 @@ function render () {
     }),
     h('link', { rel: 'stylesheet', href: 'style.css' }),
     h('h1', 'config'),
+    h('p', 'You must restart the server before changes will take effect'),
     h('form', { method: 'post' }, [
       h('div', [
         h('label', 'port'),
