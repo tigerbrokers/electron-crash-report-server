@@ -7,8 +7,7 @@ application.
 1. [Download the latest version][latest], unpack it and
    `cd /unpacked/path`
 
-2. Create a `config.ini` file with your settings; use
-   [`config-sample.ini`][sample-config] to get started
+2. Copy or move `config-sample.ini` to `config.ini`
 
 3. Run `npm install` and `npm start`
 
@@ -27,8 +26,13 @@ application.
 5. :bomb: your application
 
 Reports are available at `submitUrl` (or your inbox by
-enabling email). Disabling `http` will remove the ability
+enabling email). Disabling `web` will remove the ability
 to view reports online.
+
+With `web` enabled the `config.ini` file is editable online
+at <http://domain.tld:1127/config>. Changes made to the
+config through either the web or `config.ini` directly
+require a server restart before changes take effect.
 
 **Note** that you need to start the `crashReporter` in both
 the main and renderer processes if you wish to generate
