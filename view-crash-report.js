@@ -14,7 +14,15 @@ function render (doc) {
       content: 'width=device-width, initial-scale=1'
     }),
     h('link', { rel: 'stylesheet', href: 'style.css' }),
-    h('h1', doc._id),
+    h('h1', [
+      doc._id,
+      h('form', { action: `/${doc._id}?_method=DELETE`, method: 'post' }, [
+        h('button.destroy', { type: 'submit' }, [
+          h('img', { alt: 'delete', src: 'x.svg' }),
+          'delete'
+        ])
+      ])
+    ]),
     h('dl', Object.keys(doc).sort().map(function (key) {
       if (!key.match(/(^_|error)/)) return [h('dt', key), h('dd', doc[key])]
     })),
