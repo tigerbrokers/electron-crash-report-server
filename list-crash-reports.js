@@ -18,6 +18,7 @@ function render (response) {
       h('td', h('a', {
         href: `/${row.id}/${_.first(Object.keys(row.doc._attachments))}`
       }, h('img', {
+        alt: 'download dump file',
         src: 'data-transfer-download.svg'
       })))
     ])
