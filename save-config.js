@@ -2,6 +2,7 @@
 
 const fs = require('fs')
 const ini = require('ini')
+const path = require('path')
 
 module.exports = function saveConfig (req, res) {
   if (req.body.web_enabled) req.body.web_enabled = true
@@ -27,6 +28,6 @@ module.exports = function saveConfig (req, res) {
     }
   }
 
-  fs.writeFileSync('config.ini', ini.encode(newConfig, { whitespace: true }))
+  fs.writeFileSync(path.join(__dirname, 'config.ini'), ini.encode(newConfig, { whitespace: true }))
   res.redirect('/config')
 }

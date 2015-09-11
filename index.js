@@ -10,12 +10,13 @@ const express = require('express')
 const fs = require('fs')
 const listCrashReports = require('./list-crash-reports')
 const methodOverride = require('method-override')
+const path = require('path')
 const saveConfig = require('./save-config')
 const saveCrashReport = require('./save-crash-report')
 const viewCrashReport = require('./view-crash-report')
 
 fs.accessSync('.', fs.W_OK)
-fs.accessSync('config.ini', fs.R_OK | fs.W_OK)
+fs.accessSync(path.join(__dirname, 'config.ini'), fs.R_OK | fs.W_OK)
 
 const app = express()
 const server = app.listen(config.port, function () {
