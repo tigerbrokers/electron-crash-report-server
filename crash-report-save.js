@@ -3,14 +3,14 @@
 const _ = require('lodash')
 const config = require('./config')
 const db = require('./db')
-const emailCrashReport = require('./email-crash-report')
+const crashReportEmail = require('./crash-report-email')
 const fs = require('fs')
 const multiparty = require('multiparty')
 const uuid = require('node-uuid')
 
 module.exports = function saveCrashReport (req, res) {
   const form = new multiparty.Form()
-
+  console.log('crash')
   form.parse(req, function (err, fields, files) {
     if (err) return console.error(err)
 
@@ -47,7 +47,7 @@ module.exports = function saveCrashReport (req, res) {
     }
 
     db.put(doc).then(function (response) {
-      if (config.email.enabled) emailCrashReport(response.id)
+      if (config.email.enabled) crashReportEmail(response.id)
       res.send('thanks!')
     }).catch(function (err) {
       console.error(err)

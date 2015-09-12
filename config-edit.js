@@ -3,6 +3,8 @@
 const config = require('./config')
 const createElement = require('virtual-dom/create-element')
 const h = require('virtual-dom/h')
+const icons = require('./icons')
+const viewHeader = require('./view-header')
 
 function render () {
   function checkbox (id) {
@@ -21,13 +23,7 @@ function render () {
   }
 
   return h('html', [
-    h('title', 'Crash Report'),
-    h('meta', { charset: 'utf-8' }),
-    h('meta', {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1'
-    }),
-    h('link', { rel: 'stylesheet', href: 'style.css' }),
+    viewHeader(),
     h('h1', 'config'),
     h('p', 'You must restart the server before changes will take effect'),
     h('form', { method: 'post' }, [
@@ -112,7 +108,7 @@ function render () {
         })
       ]),
       h('button', { type: 'submit' }, [
-        h('img', { src: 'check.svg' }),
+        h('img', { src: `data:image/svg+xml;utf8,${icons.save}` }),
         'save changes'
       ])
     ])

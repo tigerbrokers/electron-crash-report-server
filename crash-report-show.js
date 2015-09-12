@@ -4,21 +4,19 @@ const _ = require('lodash')
 const createElement = require('virtual-dom/create-element')
 const db = require('./db')
 const h = require('virtual-dom/h')
+const icons = require('./icons')
+const viewHeader = require('./view-header')
 
 function render (doc) {
   return h('html', [
-    h('title', 'Crash Report'),
-    h('meta', { charset: 'utf-8' }),
-    h('meta', {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1'
-    }),
-    h('link', { rel: 'stylesheet', href: 'style.css' }),
+    viewHeader(),
     h('h1', [
       doc._id,
       h('form', { action: `/${doc._id}?_method=DELETE`, method: 'post' }, [
         h('button.destroy', { type: 'submit' }, [
-          h('img', { src: 'x.svg' }),
+          h('img', {
+            src: `data:image/svg+xml;utf8,${icons.delete}`
+          }),
           'delete'
         ])
       ])

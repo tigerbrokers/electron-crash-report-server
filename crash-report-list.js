@@ -4,6 +4,8 @@ const _ = require('lodash')
 const createElement = require('virtual-dom/create-element')
 const db = require('./db')
 const h = require('virtual-dom/h')
+const icons = require('./icons')
+const viewHeader = require('./view-header')
 
 function render (response) {
   function tr (row) {
@@ -19,19 +21,13 @@ function render (response) {
         href: `/${row.id}/${_.first(Object.keys(row.doc._attachments))}`
       }, h('img', {
         alt: 'download dump file',
-        src: 'data-transfer-download.svg'
+        src: `data:image/svg+xml;utf8,${icons.download}`
       })))
     ])
   }
 
   return h('html', [
-    h('title', 'Crash Reports'),
-    h('meta', { charset: 'utf-8' }),
-    h('meta', {
-      name: 'viewport',
-      content: 'width=device-width, initial-scale=1'
-    }),
-    h('link', { rel: 'stylesheet', href: 'style.css' }),
+    viewHeader(),
     h('table', [
       h('thead', [
         h('tr', [
