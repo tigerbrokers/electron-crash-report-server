@@ -62,3 +62,9 @@ td img {
 th {
   text-align: left;
 }
+
+.banner p {
+  padding: 1rem;
+  color: white;
+  background-color: hsl(0, 100%, 50%);
+}

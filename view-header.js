@@ -1,5 +1,6 @@
 'use strict'
 
+const config = require('./config')
 const fs = require('fs')
 const h = require('virtual-dom/h')
 const path = require('path')
@@ -13,6 +14,15 @@ module.exports = function () {
       name: 'viewport',
       content: 'width=device-width, initial-scale=1'
     }),
-    h('style', css.toString())
+    h('style', css.toString()),
+    banners()
   ]
+}
+
+function banners () {
+  if (config.web.enabled && config.web.user === 'admin' && config.web.pass === 'secret') {
+    return h('.banner', [
+      h('p', 'You have web enabled but have not changed the default user and password setup; this means anyone can come along and view your crash reports.')
+    ])
+  }
 }
