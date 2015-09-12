@@ -22,7 +22,10 @@ module.exports = function () {
 function banners () {
   if (config.web.enabled && config.web.user === 'admin' && config.web.pass === 'secret') {
     return h('.banner', [
-      h('p', 'You have web enabled but have not changed the default user and password setup; this means anyone can come along and view your crash reports.')
+      h('p', [
+        'You have web enabled but have not changed the default user and password setup; this means anyone can come along and view your crash reports. ',
+        h('a', { href: '/config' }, 'Fix it')
+      ])
     ])
   }
 }

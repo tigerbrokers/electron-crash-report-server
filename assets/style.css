@@ -68,3 +68,8 @@ th {
   color: white;
   background-color: hsl(0, 100%, 50%);
 }
+
+.banner p a {
+  font-weight: bold;
+  color: white;
+}
