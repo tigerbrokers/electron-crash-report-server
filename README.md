@@ -34,9 +34,9 @@ at <http://domain.tld:1127/config>. Changes made to the
 config through either the web or `config.ini` directly
 require a server restart.
 
-**Note** that you need to start the `crashReporter` in both
-the main and renderer processes if you wish to generate
-reports from both.
+:bangbang: **Newish versions of Electron require
+`crashReporter` started in the main and renderer
+processes.**
 
 ## bugs & features
 Please [create an issue][issues] if you encounter bugs or
