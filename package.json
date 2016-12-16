@@ -7,6 +7,9 @@
   "license": "MIT",
   "bugs": "https://github.com/johnmuhl/electron-crash-report-server/issues",
   "homepage": "https://johnmuhl.github.io/electron-crash-report-server",
+  "scripts": {
+    "start-dev": "node-dev server.js"
+  },
   "engines": {
     "node": "6.9.2"
   },
@@ -16,6 +19,7 @@
     "massive": "2.5.0"
   },
   "devDependencies": {
-    "dotenv": "^2"
+    "dotenv": "^2",
+    "node-dev": "^3"
   }
 }
