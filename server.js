@@ -5,7 +5,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const Basic = require('hapi-auth-basic')
-const Bcrypt = require('bcrypt')
 const Boom = require('boom')
 const Hapi = require('hapi')
 const db = require('./db.js')
@@ -22,10 +21,11 @@ server.register(Basic, err => {
     validateFunc: (request, user, pass, cb) => {
       if (!user || !pass) return cb(null, false)
       if (user !== process.env.AUTH_USER) return cb(null, false)
-
-      return Bcrypt.compare(pass, process.env.AUTH_PASS, (err, isValid) => {
-        return cb(err, isValid, {})
-      })
+      if (pass === process.env.AUTH_PASS) {
+        return cb(null, true, {})
+      } else {
+        return cb(null, false)
+      }
     }
   })
 

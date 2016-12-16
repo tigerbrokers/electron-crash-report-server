@@ -12,6 +12,6 @@
   ],
   "env": {
     "AUTH_USER": "crash",
-    "AUTH_PASS": "$2a$10$/hx6j.fWRogbO0R/pzbohegK2JqdrV4Bu9uwqfvsJTxfh6BRdftKW"
+    "AUTH_PASS": "electron"
   }
 }
