@@ -4,6 +4,8 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
+const Basic = require('hapi-auth-basic')
+const Bcrypt = require('bcrypt')
 const Boom = require('boom')
 const Hapi = require('hapi')
 const db = require('./db.js')
@@ -13,35 +15,61 @@ const server = new Hapi.Server()
 
 server.connection({port})
 
-server.route({
-  method: 'POST',
-  path: '/',
-  handler: (request, reply) => {
-    if (request.payload && request.payload.prod === 'Electron') {
-      const payload = Object.assign({}, request.payload)
-      const file = payload.upload_file_minidump
-
-      delete payload.upload_file_minidump
-
-      db.reports.saveDoc(payload, (err, report) => {
-        if (err) throw err
-
-        db.dumps.insert({file, report_id: report.id}, (err, dump) => {
-          if (err) throw err
-
-          reply()
-        })
-      })
-    } else {
-      const error = Boom.badRequest()
-
-      reply(error)
-    }
-  }
-})
-
-server.start(err => {
+server.register(Basic, err => {
   if (err) throw err
 
-  console.log(`Server running at: ${server.info.uri}`)
+  server.auth.strategy('simple', 'basic', {
+    validateFunc: (request, user, pass, cb) => {
+      if (!user || !pass) return cb(null, false)
+      if (user !== process.env.AUTH_USER) return cb(null, false)
+
+      return Bcrypt.compare(pass, process.env.AUTH_PASS, (err, isValid) => {
+        return cb(err, isValid, {})
+      })
+    }
+  })
+
+  server.route({
+    method: 'GET',
+    path: '/',
+    config: {
+      auth: 'simple',
+      handler: (request, reply) => {
+        reply()
+      }
+    }
+  })
+
+  server.route({
+    method: 'POST',
+    path: '/',
+    handler: (request, reply) => {
+      if (request.payload && request.payload.prod === 'Electron') {
+        const payload = Object.assign({}, request.payload)
+        const file = payload.upload_file_minidump
+
+        delete payload.upload_file_minidump
+
+        db.reports.saveDoc(payload, (err, report) => {
+          if (err) throw err
+
+          db.dumps.insert({file, report_id: report.id}, (err, dump) => {
+            if (err) throw err
+
+            reply()
+          })
+        })
+      } else {
+        const error = Boom.badRequest()
+
+        reply(error)
+      }
+    }
+  })
+
+  server.start(err => {
+    if (err) throw err
+
+    console.log(`Server running at: ${server.info.uri}`)
+  })
 })

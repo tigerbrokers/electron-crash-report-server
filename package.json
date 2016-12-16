@@ -8,14 +8,17 @@
   "bugs": "https://github.com/johnmuhl/electron-crash-report-server/issues",
   "homepage": "https://johnmuhl.github.io/electron-crash-report-server",
   "scripts": {
+    "encrypt": "node -r bcrypt -e 'Bcrypt = require(`bcrypt`); Bcrypt.hash(`${process.argv[1]}`, 10, (err, hash) => console.log(hash))'",
     "start-dev": "node-dev server.js"
   },
   "engines": {
     "node": "6.9.2"
   },
   "dependencies": {
+    "bcrypt": "1.0.1",
     "boom": "4.2.0",
     "hapi": "16.0.1",
+    "hapi-auth-basic": "4.2.0",
     "massive": "2.5.0"
   },
   "devDependencies": {
