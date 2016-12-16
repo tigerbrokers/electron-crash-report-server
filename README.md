@@ -2,6 +2,8 @@
 collecting crash reports from your Electron based
 application.
 
+[![Deploy][deploy-img]][deploy-url]
+
 ## usage
 
 1. [Download the latest version][latest], unpack it and
@@ -50,3 +52,5 @@ missing features.
 [latest]: http://git.io/vGxTY
 [license]: http://git.io/vGxmf
 [sample-config]: http://git.io/vGbHg
+[deploy-img]: https://www.herokucdn.com/deploy/button.svg
+[deploy-url]: https://heroku.com/deploy?template=https://github.com/johnmuhl/electron-crash-report-server/tree/pg-17
