@@ -1,35 +1,18 @@
 {
   "name": "electron-crash-report-server",
   "version": "0.3.0",
-  "description": "A server for collecting crash reports from your Electron based application",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/johnmuhl/electron-crash-report-server.git"
-  },
-  "author": "John Muhl <johnmuhl@gmail.com>",
+  "description": "Crash report server for Electron applications",
+  "repository": "github:johnmuhl/electron-crash-report-server",
+  "author": "John Muhl <git@johnmuhl.com>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/johnmuhl/electron-crash-report-server/issues"
-  },
-  "homepage": "https://github.com/johnmuhl/electron-crash-report-server#readme",
+  "bugs": "https://github.com/johnmuhl/electron-crash-report-server/issues",
+  "homepage": "https://johnmuhl.github.io/electron-crash-report-server",
   "engines": {
-    "iojs": "^2.0.0"
+    "node": "6.9.2"
   },
   "dependencies": {
-    "basic-auth": "^1.0.3",
-    "body-parser": "^1.13.3",
-    "express": "^4.13.3",
-    "ini": "^1.3.4",
-    "lodash": "^3.10.1",
-    "method-override": "^2.3.5",
-    "multiparty": "^4.1.2",
-    "node-uuid": "^1.4.3",
-    "nodemailer": "^1.4.0",
-    "pouchdb": "^4.0.1",
-    "virtual-dom": "^2.1.1"
+    "boom": "4.2.0",
+    "hapi": "16.0.1",
+    "massive": "2.5.0"
   }
 }
