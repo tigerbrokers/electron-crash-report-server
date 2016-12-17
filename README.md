@@ -35,7 +35,7 @@ missing features.
 [MIT license][license]
 
 [deploy-img]: https://www.herokucdn.com/deploy/button.svg
-[deploy-url]: https://heroku.com/deploy?template=https://github.com/johnmuhl/electron-crash-report-server/tree/pg-17
+[deploy-url]: https://heroku.com/deploy
 [docs]: http://electron.atom.io/docs/api/crash-reporter/
 [example]: https://github.com/johnmuhl/electron-crash-report-server/tree/master/electron-bomb
 [demo]: https://pacific-falls-32011.herokuapp.com/
