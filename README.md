@@ -1,42 +1,31 @@
-[`electron-crash-report-server`][git-repo] is a server for
-collecting crash reports from your Electron based
-application.
+**electron-crash-report-server** is a server for collecting crash reports from
+Electron applications.
+
+## install
+[![Deploy][deploy-img]][deploy-url]
+
+During setup you should change the `AUTH_USER` and `AUTH_PASS` environment
+variables. Once your app has been deployed you will use those values to login.
+
+If you are not seeing crash reports after the first deploy you may  need to
+restart the app.
 
 ## usage
+~~~ javascript
+const {crashReporter} = require('electron')
+crashReporter.start({
+  // ...other options
+  submitURL: 'https://app-name-12345.herokuapp.com/'
+})
+~~~
 
-1. [Download the latest version][latest], unpack it and
-   `cd /unpacked/path`
+Refer to the [`crashReporter`][docs] documentation for the full details.
 
-2. Copy or move `config-sample.ini` to `config.ini`
+Check out the [example electron app][example] and [demo server][demo] for a
+working example. The login and password for the demo are `crash` and `electron`.
 
-3. Run `npm install` and `npm start`
-
-4. Enable crash reports from your application
-
-   ``` javascript
-   const crashReporter = require('crash-reporter')
-   crashReporter.start({
-     submitUrl: 'http://domain.tld:1127/'
-   })
-   ```
-
-   `submitUrl` is the server running the crash report
-   server
-
-5. :bomb: your application
-
-Reports are available at `submitUrl` (or your inbox by
-enabling email). Disabling `web` will remove the ability
-to view reports online.
-
-With `web` enabled the `config.ini` file is editable online
-at <http://domain.tld:1127/config>. Changes made to the
-config through either the web or `config.ini` directly
-require a server restart.
-
-:bangbang: **Newish versions of Electron require
-`crashReporter` started in the main and renderer
-processes.**
+You may need to use the example (or any other) app to add some reports to the
+demo server.
 
 ## bugs & features
 Please [create an issue][issues] if you encounter bugs or
@@ -45,8 +34,10 @@ missing features.
 ## license
 [MIT license][license]
 
-[git-repo]: http://git.io/vGxTg
-[issues]: http://git.io/vGxt1
-[latest]: http://git.io/vGxTY
-[license]: http://git.io/vGxmf
-[sample-config]: http://git.io/vGbHg
+[deploy-img]: https://www.herokucdn.com/deploy/button.svg
+[deploy-url]: https://heroku.com/deploy?template=https://github.com/johnmuhl/electron-crash-report-server/tree/pg-17
+[docs]: http://electron.atom.io/docs/api/crash-reporter/
+[example]: https://github.com/johnmuhl/electron-crash-report-server/tree/master/electron-bomb
+[demo]: https://pacific-falls-32011.herokuapp.com/
+[issues]: https://github.com/johnmuhl/electron-crash-report-server/issues
+[license]: https://github.com/johnmuhl/electron-crash-report-server/blob/master/LICENSE
