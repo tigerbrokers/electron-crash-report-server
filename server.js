@@ -70,6 +70,23 @@ server.register([Basic, Vision], err => {
   })
 
   server.route({
+    method: 'GET',
+    path: '/reports/{id}/dump',
+    config: {
+      auth: 'simple',
+      handler: (request, reply) => {
+        const id = Number(request.params.id)
+        db.dumps.findOne({report_id: id}, (err, dump) => {
+          if (err) throw err
+          reply(dump.file)
+            .header('content-disposition', `attachment; filename=crash-${id}.dmp`)
+            .type('application/x-dmp')
+        })
+      }
+    }
+  })
+
+  server.route({
     method: 'POST',
     path: '/',
     handler: (request, reply) => {
