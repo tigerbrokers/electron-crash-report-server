@@ -45,7 +45,8 @@ server.register([Basic, Vision], err => {
     config: {
       auth: 'simple',
       handler: (request, reply) => {
-        db.run('SELECT * FROM reports ORDER BY created_at DESC', (err, reports) => {
+        const sql = 'SELECT * FROM reports ORDER BY created_at DESC'
+        db.run(sql, (err, reports) => {
           if (err) throw err
           reply.view('index', {reports})
         })
@@ -78,8 +79,9 @@ server.register([Basic, Vision], err => {
         const id = Number(request.params.id)
         db.dumps.findOne({report_id: id}, (err, dump) => {
           if (err) throw err
+          const filename = `crash-${id}.dmp`
           reply(dump.file)
-            .header('content-disposition', `attachment; filename=crash-${id}.dmp`)
+            .header('content-disposition', `attachment; filename=${filename}`)
             .type('application/x-dmp')
         })
       }
