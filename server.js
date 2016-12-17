@@ -32,10 +32,9 @@ server.register([Basic, Vision], err => {
   })
 
   server.views({
-    engines: {
-      html: Handlebars
-    },
+    engines: {html: Handlebars},
     relativeTo: __dirname,
+    layout: true,
     path: 'views'
   })
 
@@ -54,7 +53,7 @@ server.register([Basic, Vision], err => {
             isSecure: process.env.NODE_ENV === 'production'
           }
           reply
-            .view('index', {reports})
+            .view('index', {reports, title: 'crash reports'})
             .state('authorization', auth, opts)
         })
       }
@@ -71,7 +70,7 @@ server.register([Basic, Vision], err => {
         db.reports.find(id, (err, report) => {
           if (err) throw err
           report.body = JSON.stringify(report.body, null, 2)
-          reply.view('report', {report})
+          reply.view('report', {report, title: 'crash report'})
         })
       }
     }
