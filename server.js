@@ -6,7 +6,9 @@ if (process.env.NODE_ENV !== 'production') {
 
 const Basic = require('hapi-auth-basic')
 const Boom = require('boom')
+const Handlebars = require('handlebars')
 const Hapi = require('hapi')
+const Vision = require('vision')
 const db = require('./db.js')
 
 const port = process.env.PORT
@@ -14,7 +16,7 @@ const server = new Hapi.Server()
 
 server.connection({port})
 
-server.register(Basic, err => {
+server.register([Basic, Vision], err => {
   if (err) throw err
 
   server.auth.strategy('simple', 'basic', {
@@ -29,13 +31,40 @@ server.register(Basic, err => {
     }
   })
 
+  server.views({
+    engines: {
+      html: Handlebars
+    },
+    relativeTo: __dirname,
+    path: 'views'
+  })
+
   server.route({
     method: 'GET',
     path: '/',
     config: {
       auth: 'simple',
       handler: (request, reply) => {
-        reply()
+        db.run('SELECT * FROM reports ORDER BY created_at DESC', (err, reports) => {
+          if (err) throw err
+          reply.view('index', {reports})
+        })
+      }
+    }
+  })
+
+  server.route({
+    method: 'GET',
+    path: '/reports/{id}',
+    config: {
+      auth: 'simple',
+      handler: (request, reply) => {
+        const id = Number(request.params.id)
+        db.reports.find(id, (err, report) => {
+          if (err) throw err
+          report.body = JSON.stringify(report.body, null, 2)
+          reply.view('report', {report})
+        })
       }
     }
   })

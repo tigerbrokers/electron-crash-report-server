@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>electron-crash-report-server</title>
+  <ul>
+    {{#each reports}}
+    <li>
+      <a href="/reports/{{id}}">
+        {{created_at}}
+      </a>
+    </li>
+    {{/each}}
+  </ul>
+</html>
