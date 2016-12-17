@@ -48,7 +48,14 @@ server.register([Basic, Vision], err => {
         const sql = 'SELECT * FROM reports ORDER BY created_at DESC'
         db.run(sql, (err, reports) => {
           if (err) throw err
-          reply.view('index', {reports})
+          const auth = new Buffer(`${process.env.AUTH_USER}:${process.env.AUTH_PASS}`).toString('base64')
+          const opts = {
+            isHttpOnly: false,
+            isSecure: process.env.NODE_ENV === 'production'
+          }
+          reply
+            .view('index', {reports})
+            .state('authorization', auth, opts)
         })
       }
     }
@@ -65,6 +72,24 @@ server.register([Basic, Vision], err => {
           if (err) throw err
           report.body = JSON.stringify(report.body, null, 2)
           reply.view('report', {report})
+        })
+      }
+    }
+  })
+
+  server.route({
+    method: 'DELETE',
+    path: '/reports/{id}',
+    config: {
+      auth: 'simple',
+      handler: (request, reply) => {
+        const id = Number(request.params.id)
+        db.dumps.destroy({report_id: id}, (err, res) => {
+          if (err) throw err
+          db.reports.destroy({id}, (err, res) => {
+            if (err) throw err
+            reply().location('/')
+          })
         })
       }
     }
