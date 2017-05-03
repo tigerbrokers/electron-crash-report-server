@@ -47,7 +47,7 @@ server.register([Basic, Vision], err => {
         const sql = 'SELECT * FROM reports ORDER BY created_at DESC'
         db.run(sql, (err, reports) => {
           if (err) throw err
-          const auth = new Buffer(`${process.env.AUTH_USER}:${process.env.AUTH_PASS}`).toString('base64')
+          const auth = Buffer.from(`${process.env.AUTH_USER}:${process.env.AUTH_PASS}`).toString('base64')
           const opts = {
             isHttpOnly: false,
             isSecure: process.env.NODE_ENV === 'production'
