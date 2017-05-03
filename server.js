@@ -116,7 +116,7 @@ server.register([Basic, Vision], err => {
     method: 'POST',
     path: '/',
     handler: (request, reply) => {
-      if (request.payload && request.payload.prod === 'Electron') {
+      if (request.payload) {
         const payload = Object.assign({}, request.payload)
         const file = payload.upload_file_minidump
 
