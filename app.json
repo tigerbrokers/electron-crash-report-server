@@ -11,6 +11,7 @@
     }
   ],
   "env": {
+    "API_KEY": "mixpanel api key",
     "AUTH_USER": "crash",
     "AUTH_PASS": "electron"
   }

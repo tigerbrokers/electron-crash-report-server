@@ -13,6 +13,7 @@ const db = require('./db.js')
 
 const port = process.env.PORT
 const server = new Hapi.Server()
+const mixpanel = require('./mixpanel.js')
 
 server.connection({port})
 
@@ -119,6 +120,8 @@ server.register([Basic, Vision], err => {
       if (request.payload) {
         const payload = Object.assign({}, request.payload)
         const file = payload.upload_file_minidump
+
+        mixpanel.track('app:crash', payload)
 
         delete payload.upload_file_minidump
 
