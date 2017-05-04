@@ -123,7 +123,7 @@ server.register([Basic, Vision], err => {
 
         delete payload.upload_file_minidump
 
-        mixpanel.track('app:crash', Object.assign(payload))
+        mixpanel.track('app:crash', Object.assign({}, payload))
 
         db.reports.saveDoc(payload, (err, report) => {
           if (err) throw err
