@@ -121,9 +121,9 @@ server.register([Basic, Vision], err => {
         const payload = Object.assign({}, request.payload)
         const file = payload.upload_file_minidump
 
-        mixpanel.track('app:crash', payload)
-
         delete payload.upload_file_minidump
+
+        mixpanel.track('app:crash', payload)
 
         db.reports.saveDoc(payload, (err, report) => {
           if (err) throw err
